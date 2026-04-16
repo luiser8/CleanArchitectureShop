@@ -1,0 +1,47 @@
+@ShopProducts.WebAPI_HostAddress = http://localhost:5089
+
+GET {{ShopProducts.WebAPI_HostAddress}}/api/products/019D84C4-A572-7CBB-988C-C6ADD5CC8BCC
+Accept: application/json
+
+###
+
+GET {{ShopProducts.WebAPI_HostAddress}}/api/products/filter?name=Product&active=true
+Accept: application/json
+
+###
+
+DELETE {{ShopProducts.WebAPI_HostAddress}}/api/products/019D9876-4911-7928-B6CC-5DB786FE7F91
+Accept: application/json
+
+###
+
+POST {{ShopProducts.WebAPI_HostAddress}}/api/products
+Content-Type: application/json
+
+{
+    "name": "Product 2",
+    "description": "This is a sample product 2",
+    "price": 29.99,
+    "amount": 100,
+    "inventoryInitial": 50
+}
+
+###
+
+PUT {{ShopProducts.WebAPI_HostAddress}}/api/products/019D8E37-E397-7235-8B43-C8AA70FED7EE
+Content-Type: application/json
+{
+    "name": "Sample Product 3",
+    "description": "This is a sample product 3",
+    "price": 30.99,
+    "amount": 120,
+    "active": true
+}
+
+###
+
+POST {{ShopProducts.WebAPI_HostAddress}}/api/products/019D8E37-E397-7235-8B43-C8AA70FED7EE/inventory
+Content-Type: application/json
+{
+    "delta": -50
+}

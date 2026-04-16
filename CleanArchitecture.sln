@@ -1,5 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.4.11626.88 stable
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{542AB267-BBAD-4195-9435-E7751D7D17D1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopProducts.Domain", "ShopProducts.Domain\ShopProducts.Domain.csproj", "{C7EAF336-0961-42A4-A5FE-1CE980B7907E}"
@@ -11,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopProducts.Application", "ShopProducts.Application\ShopProducts.Application.csproj", "{CFB5421E-7276-40F6-8646-84D3C9CBBE1B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopProducts.Infrastructure", "ShopProducts.Infrastructure\ShopProducts.Infrastructure.csproj", "{8C4E7658-6F3D-40E3-BD1F-D2545447B64A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopProducts.WebAPI", "ShopProducts.WebAPI\ShopProducts.WebAPI.csproj", "{423AA161-58CF-4981-AC38-D5B999570662}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,10 +35,21 @@ Global
 		{8C4E7658-6F3D-40E3-BD1F-D2545447B64A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C4E7658-6F3D-40E3-BD1F-D2545447B64A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C4E7658-6F3D-40E3-BD1F-D2545447B64A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{423AA161-58CF-4981-AC38-D5B999570662}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{423AA161-58CF-4981-AC38-D5B999570662}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{423AA161-58CF-4981-AC38-D5B999570662}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{423AA161-58CF-4981-AC38-D5B999570662}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C7EAF336-0961-42A4-A5FE-1CE980B7907E} = {542AB267-BBAD-4195-9435-E7751D7D17D1}
 		{CFB5421E-7276-40F6-8646-84D3C9CBBE1B} = {542AB267-BBAD-4195-9435-E7751D7D17D1}
 		{8C4E7658-6F3D-40E3-BD1F-D2545447B64A} = {54601B72-AEC9-472A-A3AD-6B69F5603F18}
+		{423AA161-58CF-4981-AC38-D5B999570662} = {C7CB6A9F-26B4-4A23-A3F6-99944FFF8BE3}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {02D6E6B4-93A7-4137-99EC-9DC8D66C8D1C}
 	EndGlobalSection
 EndGlobal

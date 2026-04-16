@@ -1,10 +1,12 @@
+using ShopProducts.Application.Utils.Mediator;
+
 namespace ShopProducts.Application.UseCases.Products.Commands.CreateProduct;
 
 public record CreateProductCommand
 (
     string Name,
     string? Description,
-    decimal Money,
-    string Currency,
+    decimal Price,
+    decimal Amount,
     int QuantityInventory
-);
+): IRequest<Guid>;

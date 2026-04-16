@@ -1,31 +1,36 @@
+namespace ShopProducts.Infrastructure.Persistence.Configurations;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ShopProducts.Domain.Entities;
-
-namespace ShopProducts.Infrastructure.Persistence.Configurations;
+using ShopProducts.Domain.ValueObjects;
 
 public class ProductConfiguration : IEntityTypeConfiguration<Product>
 {
     public void Configure(EntityTypeBuilder<Product> builder)
     {
-        builder.Property(prop => prop.Name)
-            .HasMaxLength(200)
+        builder.HasKey(p => p.Id);
+
+        builder.Property(p => p.Name)
+            .IsRequired()
+            .HasMaxLength(200);
+
+        builder.Property(p => p.Description)
+            .HasMaxLength(500);
+
+        builder.Property(p => p.Price)
+            .HasColumnType("decimal(18,2)")
             .IsRequired();
 
-        builder.HasIndex(prop => prop.Name).IsUnique();
-        
-        builder.Property(prop => prop.Description)
-            .HasMaxLength(2000);
+        builder.Property(p => p.Amount)
+            .HasColumnType("decimal(18,2)")
+            .IsRequired();
 
-        builder.ComplexProperty(prop => prop.Money, action =>
-        {
-            action.Property(e => e.Currency).HasColumnName("Price");
-            action.Property(e => e.Mount).HasColumnName("Amount");
-        });
-        
-        builder.ComplexProperty(prop => prop.QuantityInventory, action =>
-        {
-            action.Property(e => e.Value).HasColumnName("Inventory");
-        });
+        builder.Property(p => p.Inventory)
+            .HasConversion(
+                v => v.Value,
+                v => QuantityInventory.Create(v))
+            .HasColumnName("Inventory")
+            .HasColumnType("int");
     }
 }

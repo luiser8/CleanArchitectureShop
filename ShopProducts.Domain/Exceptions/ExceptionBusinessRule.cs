@@ -7,3 +7,11 @@ public class ExceptionBusinessRule : Exception
         
     }
 }
+
+public class ExceptionNotFound : Exception
+{
+    public ExceptionNotFound(string message) : base(message)
+    {
+
+    }
+}
