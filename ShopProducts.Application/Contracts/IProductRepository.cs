@@ -4,6 +4,7 @@ namespace ShopProducts.Application.Contracts;
 
 public interface IProductRepository
 {
+    Task<List<Product>> GetAll(CancellationToken cancellationToken = default);
     Task Add(Product product, CancellationToken cancellationToken = default);
     Task<bool> Exists(string name, CancellationToken cancellationToken = default);
     Task<Product?> GetById(Guid id, CancellationToken cancellationToken = default);

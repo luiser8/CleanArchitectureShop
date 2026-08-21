@@ -5,7 +5,7 @@ Accept: application/json
 
 ###
 
-GET {{ShopProducts.WebAPI_HostAddress}}/api/products/filter?name=Product&active=true
+GET http://localhost:5089/api/products/filter?name=Product&active=true
 Accept: application/json
 
 ###
@@ -15,14 +15,14 @@ Accept: application/json
 
 ###
 
-POST {{ShopProducts.WebAPI_HostAddress}}/api/products
+POST http://localhost:5089/api/products
 Content-Type: application/json
 
 {
-    "name": "Product 2",
-    "description": "This is a sample product 2",
-    "price": 29.99,
-    "amount": 100,
+    "name": "Product 4",
+    "description": "This is a sample product 4",
+    "price": 24.99,
+    "amount": 10,
     "inventoryInitial": 50
 }
 

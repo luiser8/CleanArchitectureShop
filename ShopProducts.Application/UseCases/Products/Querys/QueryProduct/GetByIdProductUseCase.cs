@@ -8,12 +8,12 @@ public class GetByIdProductUseCase(IProductRepository productRepository) : IRequ
 {
     public async Task<ProductDetailDto> Handle(GetByIdProductQuery request)
     {
-       var product = await productRepository.GetById(request.Id);
-       if (product == null)
-       {
-           throw new ExceptionNotFound("Product not found");
-       }
+        var product = await productRepository.GetById(request.Id);
+        if (product == null)
+        {
+            throw new ExceptionNotFound("Product not found");
+        }
 
-       return product.ToProductDetailDto();
+        return product.ToProductDetailDto();
     }
 }

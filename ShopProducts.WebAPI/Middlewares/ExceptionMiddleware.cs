@@ -7,26 +7,26 @@ namespace ShopProducts.WebAPI.Middlewares;
 public class ExceptionMiddleware
 {
     private readonly RequestDelegate _next;
-        private readonly ILogger<ExceptionMiddleware> _logger;
-    
-        public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
+    private readonly ILogger<ExceptionMiddleware> _logger;
+
+    public ExceptionMiddleware(RequestDelegate next, ILogger<ExceptionMiddleware> logger)
+    {
+        _next = next;
+        _logger = logger;
+    }
+
+    public async Task InvokeAsync(HttpContext context)
+    {
+        try
         {
-            _next = next;
-            _logger = logger;
+            await _next(context);
         }
-    
-        public async Task InvokeAsync(HttpContext context)
+        catch (Exception ex)
         {
-            try
-            {
-                await _next(context);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "An unhandled exception occurred.");
-                await ManagementException(context, ex);
-            }
+            _logger.LogError(ex, "An unhandled exception occurred.");
+            await ManagementException(context, ex);
         }
+    }
 
     private Task ManagementException(HttpContext context, Exception ex)
     {
@@ -34,7 +34,7 @@ public class ExceptionMiddleware
         context.Response.ContentType = "application/json";
         var result = string.Empty;
 
-        switch(ex)
+        switch (ex)
         {
             case ExceptionBusinessRule businessRule:
                 statusCode = HttpStatusCode.BadRequest;

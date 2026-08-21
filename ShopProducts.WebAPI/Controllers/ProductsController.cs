@@ -6,6 +6,7 @@ using ShopProducts.Application.UseCases.Products.Commands.UpdateProduct;
 using ShopProducts.Application.UseCases.Products.Querys.FilterProducts;
 using ShopProducts.Application.UseCases.Products.Querys.QueryProduct;
 using ShopProducts.Application.Utils.Mediator;
+using ShopProducts.Domain.Entities;
 using ShopProducts.WebAPI.DTos;
 
 namespace ShopProducts.WebAPI.Controllers
@@ -13,13 +14,11 @@ namespace ShopProducts.WebAPI.Controllers
     [Route("api/products")]
     public class ProductsController(IMediator mediator) : ControllerBase
     {
-        [HttpGet("{id}")]
+        [HttpGet("{id:guid}")]
         public async Task<ActionResult<ProductDetailDto>> GetById(Guid id)
         {
             var query = new GetByIdProductQuery(id);
             var product = await mediator.Send(query);
-            if (product is null)
-                return NotFound();
             return Ok(product);
         }
 
@@ -46,7 +45,7 @@ namespace ShopProducts.WebAPI.Controllers
             return CreatedAtAction(nameof(Create), new { id }, null);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{id:guid}")]
         public async Task<ActionResult> Update(Guid id, [FromBody] UpdateProductDto model)
         {
             var command = new UpdateProductCommand(
@@ -62,7 +61,7 @@ namespace ShopProducts.WebAPI.Controllers
             return NoContent();
         }
 
-        [HttpPost("{id}/inventory")]
+        [HttpPost("{id:guid}/inventory")]
         public async Task<ActionResult> AdjustInventory(Guid id, [FromBody] AdjustmentInventoryDto model)
         {
             var command = new AdjustmentInventoryCommand(
@@ -74,7 +73,7 @@ namespace ShopProducts.WebAPI.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:guid}")]
         public async Task<ActionResult> Delete(Guid id)
         {
             var request = new DeleteProductCommand(id);

@@ -6,6 +6,12 @@ namespace ShopProducts.Infrastructure.Persistence.Repositories;
 
 public class ProductRepository(ApplicationDbContext context) : IProductRepository
 {
+    public async Task<List<Product>> GetAll(CancellationToken cancellationToken = default)
+    {
+        var query = context.Products.AsQueryable();
+        return await query.ToListAsync(cancellationToken: cancellationToken);
+    }
+
     public async Task Add(Product product, CancellationToken cancellationToken = default)
     {
         await context.Products.AddAsync(product, cancellationToken);
@@ -35,7 +41,7 @@ public class ProductRepository(ApplicationDbContext context) : IProductRepositor
             query = query.Where(p => p.Name.Contains(Name));
         }
 
-        if (Active.HasValue || Active is not null)
+        if (Active is not (null and null))
         {
             query = query.Where(p => p.Active == Active);
         }

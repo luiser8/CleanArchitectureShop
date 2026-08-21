@@ -15,8 +15,8 @@ public class CreateProductUseCase(IProductRepository repository) : IRequestHandl
 
         var quantityInventory = QuantityInventory.Create(command.QuantityInventory);
         var product = Product.Create(command.Name, command.Description, command.Price, command.Amount, quantityInventory);
-        
+
         await repository.Add(product);
         return product.Id;
-    }   
+    }
 }

@@ -6,20 +6,21 @@ using ShopProducts.Application.UseCases.Products.Commands.UpdateProduct;
 using ShopProducts.Application.UseCases.Products.Querys.FilterProducts;
 using ShopProducts.Application.UseCases.Products.Querys.QueryProduct;
 using ShopProducts.Application.Utils.Mediator;
+using ShopProducts.Domain.Entities;
 
 namespace ShopProducts.Application;
 
 public static class DependencyInjection
 {
-        public static IServiceCollection AddApplication(this IServiceCollection services)
-        {
-            services.AddTransient<IMediator, SimpleMediator>();
-            services.AddScoped<IRequestHandler<CreateProductCommand, Guid>, CreateProductUseCase>();
-            services.AddScoped<IRequestHandler<UpdateProductCommand>, UpdateProductUseCase>();
-            services.AddScoped<IRequestHandler<AdjustmentInventoryCommand>, AdjustmentInventoryUseCase>();
-            services.AddScoped<IRequestHandler<GetByIdProductQuery, ProductDetailDto>, GetByIdProductUseCase>();
-            services.AddScoped<IRequestHandler<FilterProductsQuery, List<FilterProductsDto>>, FilterProductsUseCase>();
-            services.AddScoped<IRequestHandler<DeleteProductCommand>, DeleteProductUseCase>();
+    public static IServiceCollection AddApplication(this IServiceCollection services)
+    {
+        services.AddTransient<IMediator, SimpleMediator>();
+        services.AddScoped<IRequestHandler<CreateProductCommand, Guid>, CreateProductUseCase>();
+        services.AddScoped<IRequestHandler<UpdateProductCommand>, UpdateProductUseCase>();
+        services.AddScoped<IRequestHandler<AdjustmentInventoryCommand>, AdjustmentInventoryUseCase>();
+        services.AddScoped<IRequestHandler<GetByIdProductQuery, ProductDetailDto>, GetByIdProductUseCase>();
+        services.AddScoped<IRequestHandler<FilterProductsQuery, List<FilterProductsDto>>, FilterProductsUseCase>();
+        services.AddScoped<IRequestHandler<DeleteProductCommand>, DeleteProductUseCase>();
 
         return services;
     }

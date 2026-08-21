@@ -15,7 +15,7 @@ namespace ShopProducts.Application.UseCases.Products.Commands.UpdateProduct
             }
 
             product.Update(request.Name, request.Description, request.Price, request.Amount, request.Active);
-           await repository.Update(product);
+            await repository.Update(product);
         }
     }
 }

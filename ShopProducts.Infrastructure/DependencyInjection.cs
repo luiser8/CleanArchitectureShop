@@ -12,9 +12,9 @@ public static class DependencyInjection
     {
         services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer("name=DefaultConnection"));
-        
+
         services.AddScoped<IProductRepository, ProductRepository>();
-        
+
         return services;
     }
 }

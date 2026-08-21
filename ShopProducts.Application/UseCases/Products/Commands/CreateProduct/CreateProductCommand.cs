@@ -9,4 +9,4 @@ public record CreateProductCommand
     decimal Price,
     decimal Amount,
     int QuantityInventory
-): IRequest<Guid>;
+) : IRequest<Guid>;

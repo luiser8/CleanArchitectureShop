@@ -9,14 +9,14 @@ public class SimpleMediator(IServiceProvider sp) : IMediator
         var typeHandler = typeof(IRequestHandler<,>).MakeGenericType(request.GetType(), typeof(TResponse));
         var useCase = sp.GetRequiredService(typeHandler);
         var method = typeHandler.GetMethod("Handle")!;
-        return await (Task<TResponse>)method.Invoke(useCase, new object[] { request })!;
+        return await (Task<TResponse>)method.Invoke(useCase, [request])!;
     }
 
     public Task Send(IRequest request)
     {
-       var typeHandler = typeof(IRequestHandler<>).MakeGenericType(request.GetType());
+        var typeHandler = typeof(IRequestHandler<>).MakeGenericType(request.GetType());
         var useCase = sp.GetRequiredService(typeHandler);
         var method = typeHandler.GetMethod("Handle")!;
-        return (Task)method.Invoke(useCase, new object[] { request })!;
+        return (Task)method.Invoke(useCase, [request])!;
     }
 }

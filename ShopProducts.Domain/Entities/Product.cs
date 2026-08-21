@@ -30,7 +30,7 @@ public class Product
     }
 
     public void UpdateInventory(int delta)
-    { 
+    {
         var newInventory = Inventory.Value + delta;
         if (newInventory < 0)
             throw new ExceptionBusinessRule("Inventory cannot be negative");
